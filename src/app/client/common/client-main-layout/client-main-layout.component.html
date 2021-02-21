@@ -1,0 +1,31 @@
+<nav class="navbar bg-primary">
+  <h2>Marketplace</h2>
+
+  <ul>
+    <li routerLinkActive="active">
+      <a (click)="setType('Phones')">Phones</a>
+    </li>
+    <li routerLinkActive="active">
+      <a (click)="setType('Laptops')">Laptops</a>
+    </li>
+    <li routerLinkActive="active">
+      <a (click)="setType('Headphones')">Headphones</a>
+    </li>
+    <li routerLinkActive="active">
+      <a (click)="setType('TVs')">TVs</a>
+    </li>
+    <li routerLinkActive="active">
+      <a (click)="setType('Households')">Households</a>
+    </li>
+    <li routerLinkActive="active">
+      <a (click)="goToAdmin()">Admin</a>
+    </li>
+    <li routerLinkActive="active">
+      <a (click)="setType('Cart')" [routerLink]="['/cart']">Cart</a>
+    </li>
+  </ul>
+</nav>
+
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
