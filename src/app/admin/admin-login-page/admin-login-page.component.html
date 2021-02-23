@@ -1,1 +1,44 @@
-<p>admin-login-page works!</p>
+<form class="admin-login-form" [formGroup]="form" (ngSubmit)="submit()">
+  <h2>Please Log In</h2>
+
+  <div class="form-control">
+    <label for="email">Email:</label>
+    <input type="email" formControlName="email" type="email" />
+
+    <div
+      class="validation"
+      *ngIf="form.get('email').touched && form.get('email').invalid"
+    >
+      <small *ngIf="form.get('email').errors.required">Enter Your Email</small>
+      <small *ngIf="form.get('email').errors.email"
+        >Enter Your Valid Email</small
+      >
+    </div>
+
+    <label for="password">Password:</label>
+    <input type="password" formControlName="password" type="password" />
+
+    <div
+      class="validation"
+      *ngIf="form.get('password').touched && form.get('password').invalid"
+    >
+      <small *ngIf="form.get('password').errors.required"
+        >Enter Your Password</small
+      >
+      <small *ngIf="form.get('password').errors.minlength"
+        >Password must've been at least
+        {{ form.get("password").errors.minlength.requiredLength }} digits. Now
+        it has
+        {{ form.get("password").errors.minlength.actualLength }} digits.</small
+      >
+    </div>
+  </div>
+
+  <button
+    class="btn btn-primary btn-block"
+    type="submit"
+    [disabled]="form.invalid || submitted"
+  >
+    Login
+  </button>
+</form>

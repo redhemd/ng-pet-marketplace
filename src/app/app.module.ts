@@ -8,6 +8,7 @@ import { ClientProductPageComponent } from './client/client-product-page/client-
 import { ClientProductComponent } from './client/client-product/client-product.component';
 import { ClientMainLayoutComponent } from './client/common/client-main-layout/client-main-layout.component';
 import { ClientCartPageComponent } from './client/client-cart-page/client-cart-page.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,7 @@ import { ClientCartPageComponent } from './client/client-cart-page/client-cart-p
     ClientCartPageComponent,
     ClientMainLayoutComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
 })

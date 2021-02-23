@@ -7,10 +7,14 @@ import { AdminDashboardPageComponent } from './admin-dashboard-page/admin-dashbo
 import { AdminEditPageComponent } from './admin-edit-page/admin-edit-page.component';
 import { AdminLoginPageComponent } from './admin-login-page/admin-login-page.component';
 import { AdminOrdersPageComponent } from './admin-orders-page/admin-orders-page.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AuthGuard } from '../client/common/auth.guard';
 
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     RouterModule.forChild([
       {
         path: '',
@@ -18,10 +22,26 @@ import { AdminOrdersPageComponent } from './admin-orders-page/admin-orders-page.
         children: [
           { path: '', redirectTo: '/admin/login', pathMatch: 'full' },
           { path: 'login', component: AdminLoginPageComponent },
-          { path: 'create', component: AdminCreatePageComponent },
-          { path: 'dashboard', component: AdminDashboardPageComponent },
-          { path: 'orders', component: AdminOrdersPageComponent },
-          { path: 'product/:id/edit', component: AdminEditPageComponent },
+          {
+            path: 'create',
+            component: AdminCreatePageComponent,
+            canActivate: [AuthGuard],
+          },
+          {
+            path: 'dashboard',
+            component: AdminDashboardPageComponent,
+            canActivate: [AuthGuard],
+          },
+          {
+            path: 'orders',
+            component: AdminOrdersPageComponent,
+            canActivate: [AuthGuard],
+          },
+          {
+            path: 'product/:id/edit',
+            component: AdminEditPageComponent,
+            canActivate: [AuthGuard],
+          },
         ],
       },
     ]),
