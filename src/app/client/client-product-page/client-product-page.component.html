@@ -1,1 +1,41 @@
-<p>product-page works!</p>
+<div *ngIf="productStream | async as product; else loading">
+  <div class="prod">
+    <div class="header right">
+      <button routerLink="/" class="btn btn-dark">Back</button>
+    </div>
+
+    <div class="flex">
+      <div class="text-center item">
+        <h2>{{ product.title }}</h2>
+
+        <div class="flex-center">
+          <quill-view [content]="product.photo"></quill-view>
+        </div>
+
+        <div>
+          <h2>Price: {{ product.price }}</h2>
+
+          <button
+            class="btn btn-dark"
+            [routerLink]="['/cart']"
+            (click)="addToCart()"
+          >
+            Add To Cart
+          </button>
+        </div>
+      </div>
+
+      <div class="item">
+        <h2>Information:</h2>
+
+        <div>
+          <quill-view [content]="product.info"></quill-view>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #loading>
+  <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+</ng-template>

@@ -8,8 +8,11 @@ import { ClientProductPageComponent } from './client/client-product-page/client-
 import { ClientProductComponent } from './client/client-product/client-product.component';
 import { ClientMainLayoutComponent } from './client/common/client-main-layout/client-main-layout.component';
 import { ClientCartPageComponent } from './client/client-cart-page/client-cart-page.component';
-import { HttpClientModule } from '@angular/common/http';
-
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './client/common/auth.interceptor';
+import { QuillModule } from 'ngx-quill';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,8 +22,21 @@ import { HttpClientModule } from '@angular/common/http';
     ClientCartPageComponent,
     ClientMainLayoutComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
-  providers: [],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    QuillModule.forRoot(),
+    BrowserAnimationsModule,
+    MatProgressSpinnerModule,
+  ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      multi: true,
+      useClass: AuthInterceptor,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

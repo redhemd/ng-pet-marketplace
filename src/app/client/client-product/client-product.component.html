@@ -1,1 +1,22 @@
-<p>product works!</p>
+<div class="text-center price-and-btn">
+  <h2>{{ product.title }}</h2>
+
+  <div class="flex-center" class="photo-parent">
+    <!-- Картинку загружать width: 200px, height: 400px     -->
+    <quill-view [content]="product.photo"></quill-view>
+  </div>
+
+  <h2 class="price">Price: {{ product.price }} $</h2>
+
+  <button class="btn btn-dark" [routerLink]="['/product', product.id]">
+    Open
+  </button>
+
+  <button
+    class="btn btn-dark"
+    [routerLink]="['/cart']"
+    (click)="addProduct(product)"
+  >
+    Add To Cart
+  </button>
+</div>
