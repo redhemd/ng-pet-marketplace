@@ -9,12 +9,16 @@ import { AdminLoginPageComponent } from './admin-login-page/admin-login-page.com
 import { AdminOrdersPageComponent } from './admin-orders-page/admin-orders-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthGuard } from '../client/common/auth.guard';
+import { QuillModule } from 'ngx-quill';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    QuillModule.forRoot(),
+    MatProgressSpinnerModule,
     RouterModule.forChild([
       {
         path: '',

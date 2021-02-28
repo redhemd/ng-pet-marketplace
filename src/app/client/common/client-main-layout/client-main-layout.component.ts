@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 import { ProductService } from '../product.service';
 
 @Component({
@@ -10,7 +11,11 @@ import { ProductService } from '../product.service';
 export class ClientMainLayoutComponent implements OnInit {
   type = 'Phones';
 
-  constructor(private router: Router, private productService: ProductService) {}
+  constructor(
+    private router: Router,
+    private productService: ProductService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -29,6 +34,10 @@ export class ClientMainLayoutComponent implements OnInit {
   }
 
   goToAdmin() {
-    this.router.navigate(['admin']);
+    if (this.authService.isAuthentificated()) {
+      this.router.navigate(['admin', 'dashboard']);
+    } else {
+      this.router.navigate(['admin']);
+    }
   }
 }
