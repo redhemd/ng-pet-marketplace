@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ProductService } from 'src/app/client/common/product.service';
+import { AlertService } from '../common/alert.service';
 
 @Component({
   selector: 'app-admin-dashboard-page',
@@ -12,8 +13,12 @@ export class AdminDashboardPageComponent implements OnInit {
   products = [];
   productSub: Subscription;
   productUnsub: Subscription;
+  productName;
 
-  constructor(public productService: ProductService) {}
+  constructor(
+    public productService: ProductService,
+    public alertService: AlertService
+  ) {}
 
   ngOnInit(): void {
     this.productSub = this.productService.getAll().subscribe((products) => {
@@ -36,6 +41,7 @@ export class AdminDashboardPageComponent implements OnInit {
       this.products = this.products.filter((product) => {
         product.id !== id;
       });
+      this.alertService.danger('Post have been deleted!');
     });
   }
 }

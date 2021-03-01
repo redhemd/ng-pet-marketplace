@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { Product } from 'src/app/client/common/interfaces';
 import { ProductService } from 'src/app/client/common/product.service';
+import { AlertService } from '../common/alert.service';
 
 @Component({
   selector: 'app-admin-edit-page',
@@ -18,7 +19,8 @@ export class AdminEditPageComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService,
-    private router: Router
+    private router: Router,
+    private alertService: AlertService
   ) {}
 
   ngOnInit(): void {
@@ -61,6 +63,7 @@ export class AdminEditPageComponent implements OnInit {
       .subscribe((response) => {
         this.sbmBoolean = false;
         this.router.navigate(['/admin', 'dashboard']);
+        this.alertService.success('Post have been edited!');
       });
   }
 }

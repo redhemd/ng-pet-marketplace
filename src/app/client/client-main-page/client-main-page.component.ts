@@ -9,7 +9,7 @@ import { ProductService } from '../common/product.service';
 export class ClientMainPageComponent implements OnInit {
   productStream;
 
-  constructor(private productService: ProductService) {}
+  constructor(public productService: ProductService) {}
 
   ngOnInit(): void {
     this.productStream = this.productService.getAll();

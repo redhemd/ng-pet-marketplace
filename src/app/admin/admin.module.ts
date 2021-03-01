@@ -11,6 +11,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthGuard } from '../client/common/auth.guard';
 import { QuillModule } from 'ngx-quill';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { SearchPipe } from '../client/common/search.pipe';
+import { AlertService } from './common/alert.service';
+import { AlertComponent } from './common/alert/alert.component';
 
 @NgModule({
   imports: [
@@ -19,6 +22,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     ReactiveFormsModule,
     QuillModule.forRoot(),
     MatProgressSpinnerModule,
+
     RouterModule.forChild([
       {
         path: '',
@@ -58,6 +62,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     AdminEditPageComponent,
     AdminLoginPageComponent,
     AdminOrdersPageComponent,
+    SearchPipe,
+    AlertComponent,
   ],
+  providers: [AlertService],
 })
 export class AdminModule {}

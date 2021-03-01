@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ProductService } from 'src/app/client/common/product.service';
+import { AlertService } from '../common/alert.service';
 
 @Component({
   selector: 'app-admin-create-page',
@@ -12,7 +13,11 @@ export class AdminCreatePageComponent implements OnInit {
   form: FormGroup;
   sbmBoolean = false;
 
-  constructor(private productService: ProductService, private router: Router) {}
+  constructor(
+    private productService: ProductService,
+    private router: Router,
+    private alertServie: AlertService
+  ) {}
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -40,12 +45,11 @@ export class AdminCreatePageComponent implements OnInit {
       date: new Date(),
     };
 
-    console.log(product);
-
     this.productService.create(product).subscribe((response) => {
       this.form.reset();
+      this.alertServie.success('Product have been created!');
       this.sbmBoolean = false;
-      this.router.navigate(['/']);
+      this.router.navigate(['/admin', 'dashboard']);
     });
   }
 }
