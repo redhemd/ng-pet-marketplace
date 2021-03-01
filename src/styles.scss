@@ -9,6 +9,7 @@
   --light-color: #ffffff;
   --danger-color: #ff0000;
   --success-color: #064b16;
+  --warning-color: rgb(240, 240, 57);
 }
 
 * {
@@ -289,5 +290,30 @@ table th {
   margin: 0 auto;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+.alert {
+  padding: 0.7rem;
+  margin: 1rem 0;
+  opacity: 0.9;
+  background: var(--light-color);
+  color: #333;
+}
+.alert-success {
+  background: var(--success-color);
+  color: #fff;
+}
+.alert-danger {
+  background: var(--danger-color);
+  color: #fff;
+}
+.alert-warning {
+  background: var(--warning-color);
+  color: black;
+}

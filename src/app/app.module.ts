@@ -13,6 +13,9 @@ import { AuthInterceptor } from './client/common/auth.interceptor';
 import { QuillModule } from 'ngx-quill';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { AlertComponent } from './admin/common/alert/alert.component';
+import { AlertService } from './admin/common/alert.service';
+import { SortPipe } from './client/common/sort.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,6 +24,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     ClientProductPageComponent,
     ClientCartPageComponent,
     ClientMainLayoutComponent,
+    SortPipe,
   ],
   imports: [
     BrowserModule,
