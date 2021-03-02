@@ -1,0 +1,9 @@
+.navbar {
+  h2 {
+    &:hover {
+      color: var(--light-color);
+      opacity: 1;
+      cursor: pointer;
+    }
+  }
+}

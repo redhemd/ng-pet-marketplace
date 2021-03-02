@@ -13,9 +13,12 @@ import { AuthInterceptor } from './client/common/auth.interceptor';
 import { QuillModule } from 'ngx-quill';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { AlertComponent } from './admin/common/alert/alert.component';
 import { AlertService } from './admin/common/alert.service';
 import { SortPipe } from './client/common/sort.pipe';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ClientAlertComponent } from './client/common/client-alert/client-alert.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,6 +28,7 @@ import { SortPipe } from './client/common/sort.pipe';
     ClientCartPageComponent,
     ClientMainLayoutComponent,
     SortPipe,
+    ClientAlertComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,6 +37,9 @@ import { SortPipe } from './client/common/sort.pipe';
     QuillModule.forRoot(),
     BrowserAnimationsModule,
     MatProgressSpinnerModule,
+    FormsModule,
+    ReactiveFormsModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   providers: [
     {
@@ -40,6 +47,7 @@ import { SortPipe } from './client/common/sort.pipe';
       multi: true,
       useClass: AuthInterceptor,
     },
+    AlertService,
   ],
   bootstrap: [AppComponent],
 })
