@@ -1,1 +1,102 @@
-<p>cart-page works!</p>
+<div class="container" *ngIf="cartProducts.length > 0; else empty">
+  <h2 class="text-center">Your order:</h2>
+
+  <table>
+    <tbody>
+      <tr *ngFor="let cartProduct of cartProducts; let idx = index">
+        <td>{{ cartProduct.type }}</td>
+        <td>{{ cartProduct.title }}</td>
+        <td>
+          <button class="btn btn-danger" (click)="delete(cartProduct)">
+            Delete
+          </button>
+        </td>
+        <td>{{ cartProduct.price }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <hr />
+
+  <b class="right">Total: {{ totalPrice }}$ </b>
+
+  <h2 class="text-center">Delivery:</h2>
+
+  <div class="text-center text-danger" *ngIf="formIsAdded">
+    {{ formIsAdded }}
+  </div>
+
+  <form [formGroup]="formForDelivery" (ngSubmit)="submit()">
+    <div class="form-control">
+      <label for="type">Name</label>
+      <input type="name" id="name" formControlName="name" />
+
+      <div
+        class="validation"
+        *ngIf="
+          formForDelivery.get('name').touched &&
+          formForDelivery.get('name').invalid
+        "
+      >
+        <small *ngIf="formForDelivery.get('name').errors.required"
+          >Enter your name</small
+        >
+      </div>
+    </div>
+
+    <div class="form-control">
+      <label for="phone">Phone number</label>
+      <input type="phone" id="phone" formControlName="phone" />
+
+      <div
+        class="validation"
+        *ngIf="
+          formForDelivery.get('phone').touched &&
+          formForDelivery.get('phone').invalid
+        "
+      >
+        <small *ngIf="formForDelivery.get('phone').errors.required"
+          >Enter your phone number</small
+        >
+      </div>
+    </div>
+
+    <div class="form-control">
+      <label for="address">Address</label>
+      <input type="address" id="address" formControlName="address" />
+
+      <div
+        class="validation"
+        *ngIf="
+          formForDelivery.get('address').touched &&
+          formForDelivery.get('address').invalid
+        "
+      >
+        <small *ngIf="formForDelivery.get('address').errors.required"
+          >Enter your adress</small
+        >
+      </div>
+    </div>
+
+    <div class="form-control">
+      <label for="payment">Choose your payment method:</label>
+
+      <select formControlName="payment">
+        <option value="Cash">Cash</option>
+        <option value="Card">Card</option>
+      </select>
+    </div>
+
+    <button
+      class="btn btn-primary btn-block"
+      type="submit"
+      [disabled]="formForDelivery.invalid || sbmBoolean"
+    >
+      Add
+    </button>
+  </form>
+</div>
+
+<ng-template #empty>
+  <h2 class="text-center">Cart is empty, select a product</h2>
+</ng-template>

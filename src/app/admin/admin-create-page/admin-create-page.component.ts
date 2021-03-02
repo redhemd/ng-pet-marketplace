@@ -16,7 +16,7 @@ export class AdminCreatePageComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private router: Router,
-    private alertServie: AlertService
+    private alertService: AlertService
   ) {}
 
   ngOnInit(): void {
@@ -47,7 +47,7 @@ export class AdminCreatePageComponent implements OnInit {
 
     this.productService.create(product).subscribe((response) => {
       this.form.reset();
-      this.alertServie.success('Product have been created!');
+      this.alertService.success('Product have been created!');
       this.sbmBoolean = false;
       this.router.navigate(['/admin', 'dashboard']);
     });

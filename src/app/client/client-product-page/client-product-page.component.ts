@@ -25,5 +25,7 @@ export class ClientProductPageComponent implements OnInit {
       })
     );
   }
-  addToCart() {}
+  addToCart(product) {
+    this.productService.addProduct(product);
+  }
 }
